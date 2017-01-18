@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	{{ form_start(form) }}
+		<div>
+			<label>Namn</label>
+			{{ form_widget(form.name ) }}
+			{{ form_errors(form.name) }}
+		</div>
+		<div>
+			<label>Telefonnummer</label>
+			{{ form_widget(form.phoneNumber) }}
+			{{ form_errors(form.phoneNumber) }}
+		</div>
+	{{ form_end(form) }}
+{% endblock %}
+
+{#
+	<p>istället för label</p>
+	{{ form_row(form.name, {
+		'label': false
+	}) }}
+	{% if error %}
+		<p class="error">Wrong number</p>
+	{% endif %}
+	{{ form_row(form.phoneNumber) }}
+	{{ form_row(form.save) }}
+#}

@@ -1,0 +1,3 @@
+form:
+    resource: "@ItworksFormBundle/Controller/"
+    type:     annotation
