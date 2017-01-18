@@ -53,7 +53,7 @@ class FormController extends Controller {
 
 	    if ($form->isSubmitted() && $form->isValid()) {
 	        // $form->getData() holds the submitted values
-	        // but, the original `$task` variable has also been updated
+	        // but, the original `$person` variable has also been updated
 	        $person = $form->getData();
 
 	        if (!preg_match('/\d+/', $person->getPhoneNumber()) ) {
@@ -62,7 +62,7 @@ class FormController extends Controller {
 	        		'error' => true,
 	        		'form' 	=> $form->createView(),
 	        		));
-	        	
+
 	        }
 
 	        //var_dump($person); die();
