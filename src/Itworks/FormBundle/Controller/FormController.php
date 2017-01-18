@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Itworks\FormBundle\Entity\Person;
 
@@ -45,6 +46,13 @@ class FormController extends Controller {
 
 		$form = $this->createFormBuilder($person)
         ->add('name', TextType::class)
+        ->add('gender', ChoiceType::class, array(
+        	'choices' => array(
+        		'male' => true,
+        		'female' => true,
+        		'other' => true,
+        		),
+        	))
         ->add('phoneNumber', TextType::class)
         ->add('save', SubmitType::class, array('label' => 'Add Person'))
         ->getForm();
@@ -65,10 +73,10 @@ class FormController extends Controller {
 
 	        }
 
-	        //var_dump($person); die();
+	        var_dump($person); die();
 
 	        // ... perform some action, such as saving the task to the database
-	        // for example, if Task is a Doctrine entity, save it!
+	        // for example, if Person is a Doctrine entity, save it!
 	        $em = $this->getDoctrine()->getManager();
 	        $em->persist($person);
 	        $em->flush();
