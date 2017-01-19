@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+//use Symfony\Component\PropertyAccess\PropertyAccess;
 use Itworks\FormBundle\Entity\Person;
 
 class FormController extends Controller {
@@ -46,11 +47,12 @@ class FormController extends Controller {
 
 		$form = $this->createFormBuilder($person)
         ->add('name', TextType::class)
+        ->add('password', TextType::class)
         ->add('gender', ChoiceType::class, array(
         	'choices' => array(
-        		'male' => true,
-        		'female' => true,
-        		'other' => true,
+        		'male' => 'male',
+        		'female' => 'female',
+        		'other' => 'other',
         		),
         	))
         ->add('phoneNumber', TextType::class)
