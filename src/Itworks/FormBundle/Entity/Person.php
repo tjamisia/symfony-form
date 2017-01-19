@@ -3,7 +3,6 @@ namespace Itworks\FormBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-//use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
 * @ORM\Table(name="persons")
@@ -33,6 +32,9 @@ class Person {
 	* @ORM\Column(type="string", length=255)
 	* @Assert\NotBlank()
 	* @Assert\Length(min=4)
+	* @Assert\Type(
+	*	type="alnum"
+	* )
 	*
 	*/
 	private $password;
@@ -46,6 +48,14 @@ class Person {
 	* )
 	*/
 	private $gender;
+
+	/**
+	* @ORM\Column(type="string", length=10)
+	* @Assert\NotBlank()
+	* @Assert\Regex("/^\w+/")
+	*
+	*/
+	private $socialSecurityNr;
 
 	/**
 	* @ORM\Column(type="string", length=255)
@@ -108,6 +118,7 @@ class Person {
 
 	/**
 	* Is password Legal
+	* 
 	* @Assert\IsTrue(
 	*	message = "The password cannot match your first name"
 	* )
@@ -132,6 +143,24 @@ class Person {
 	*/
 	public function setGender($gender) {
 		$this->gender = $gender;
+		return $this;
+	}
+
+	/**
+	* Get socialSecurityNr
+	* @return socialSecurityNr
+	*/
+	public function getSocialSecurityNr() {
+		return $this->socialSecurityNr;
+	}
+
+	/**
+	* Set socialSecurityNr
+	* @param string $socialSecurityNr
+	* @return Person
+	*/
+	public function setSocialSecurityNr() {
+		$this->socialSecurityNr = $socialSecurityNr;
 		return $this;
 	}
 

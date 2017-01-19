@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-//use Symfony\Component\PropertyAccess\PropertyAccess;
 use Itworks\FormBundle\Entity\Person;
 
 class FormController extends Controller {
@@ -50,11 +49,13 @@ class FormController extends Controller {
         ->add('password', TextType::class)
         ->add('gender', ChoiceType::class, array(
         	'choices' => array(
+        		'pick one' => false,
         		'male' => 'male',
         		'female' => 'female',
         		'other' => 'other',
         		),
         	))
+        ->add('socialSecurityNr', TextType::class)
         ->add('phoneNumber', TextType::class)
         ->add('save', SubmitType::class, array('label' => 'Add Person'))
         ->getForm();
@@ -75,7 +76,7 @@ class FormController extends Controller {
 
 	        }
 
-	        var_dump($person); die();
+	        //var_dump($person); die();
 
 	        // ... perform some action, such as saving the task to the database
 	        // for example, if Person is a Doctrine entity, save it!
